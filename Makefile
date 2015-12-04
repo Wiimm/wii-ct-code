@@ -101,45 +101,45 @@ help:
 
 all: $(ALL)
 
-rmce: bin/rmce build/rmce szs-tools/rmce
+rmce: | bin/rmce build/rmce szs-tools/rmce
 	$(LOG)
-	$Q-make --no-print-directory region=E all
+	$Q- make --no-print-directory region=E all
 
-rmcj: bin/rmcj build/rmcj szs-tools/rmcj
+rmcj: | bin/rmcj build/rmcj szs-tools/rmcj
 	$(LOG)
-	$Q-make --no-print-directory region=J all
+	$Q- make --no-print-directory region=J all
 
-rmck: bin/rmck build/rmck szs-tools/rmck
+rmck: | bin/rmck build/rmck szs-tools/rmck
 	$(LOG)
-	$Q-make --no-print-directory region=K all
+	$Q- make --no-print-directory region=K all
 
-rmcp: bin/rmcp build/rmcp szs-tools/rmcp
+rmcp: | bin/rmcp build/rmcp szs-tools/rmcp
 	$(LOG)
-	$Q-make --no-print-directory region=P all
+	$Q- make --no-print-directory region=P all
 
 #--- create directories
 
-$(GAMES:%=bin/%) : bin
+$(GAMES:%=bin/%) : | bin
 	$(LOG)
-	$Q- test -d $@ || mkdir $@
+	$Q- mkdir $@
 
-$(GAMES:%=build/%) : build
+$(GAMES:%=build/%) : | build
 	$(LOG)
-	$Q- test -d $@ || mkdir $@
+	$Q- mkdir $@
 
-$(GAMES:%=szs-tools/%) : szs-tools
+$(GAMES:%=szs-tools/%) : | szs-tools
 	$(LOG)
-	$Q- test -d $@ || mkdir $@
+	$Q- mkdir $@
 
 bin build szs-tools:
 	$(LOG)
-	$Q-test -d $@ || mkdir $@
+	$Q- mkdir $@
 
 #--- clean
 
 clean: 
 	$(LOG)
-	$Q-rm -rf build bin szs-tools
+	$Q- rm -rf build bin szs-tools
 
 #==============================================================================
 # bad0
