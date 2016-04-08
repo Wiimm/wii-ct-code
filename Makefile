@@ -11,7 +11,7 @@
 
 ONLINE_REGION	?= 255
 ENABLE_CTWW	?= 1
-ENABLE_FILTER	?= 1
+ENABLE_FILTER	?= 0
 ENABLE_BSHELL	?= 1
 ENABLE_SOM	?= 1
 ENABLE_CTS	?= 1
@@ -38,11 +38,13 @@ LOG ?= @echo $@
 #==============================================================================
 # Output configuration
 #==============================================================================
-region	?= *
-BAD0	?= bad0
-BAD1	?= bad1
-TARGETS	?= bad0 bad1
-GAMES	?= rmce rmcj rmck rmcp
+region		?= *
+BAD0		?= bad0
+BAD1		?= bad1
+TARGETS		?= bad0 bad1
+
+GAMES		:= rmce rmcj rmck rmcp
+DEST_DIRS	:= bin build szs-tools
 
 SFLAGS	+= -mregnames
 
@@ -131,7 +133,7 @@ $(GAMES:%=szs-tools/%) : | szs-tools
 	$(LOG)
 	$Q- mkdir $@
 
-bin build szs-tools:
+$(DEST_DIRS):
 	$(LOG)
 	$Q- mkdir $@
 
@@ -139,7 +141,7 @@ bin build szs-tools:
 
 clean: 
 	$(LOG)
-	$Q- rm -rf build bin szs-tools
+	$Q- rm -rf $(DEST_DIRS)
 
 #==============================================================================
 # bad0
